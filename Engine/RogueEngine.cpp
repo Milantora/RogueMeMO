@@ -38,6 +38,7 @@ namespace RogueEngine
 	{
 		RGE::setStopCallback(&Stop);
 		RPE::setStopCallback(&Stop);
+		RPE::StartTests();
 		std::string name;
 		std::cout << "Please enter name of window: ";
 		std::getline(std::cin, name);

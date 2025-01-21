@@ -15,10 +15,13 @@ namespace RogueGraphicEngine
 	void (*stopCallback)(int) = nullptr;
 	GLFWwindow* window = nullptr;
 
-	//public fields
+	//public classes defines
 
 
-	//private methods
+	//private classes
+
+
+	//private methods declarations
 
 	void keyCallback(GLFWwindow*, int, int, int, int);
 
