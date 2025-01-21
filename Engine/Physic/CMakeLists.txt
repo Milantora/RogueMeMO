@@ -1,1 +1,6 @@
-add_library (RPE rpe.cpp rpe.h)
+add_library (RoguePhysicEngine)
+
+target_sources(RoguePhysicEngine PRIVATE RoguePhysicEngine.cpp RoguePhysicEngine.ixx)
+set_source_files_properties(RoguePhysicEngine.ixx PROPERTIES LANGUAGE CXX)
+
+target_link_libraries(RoguePhysicEngine PRIVATE compiler_flags)

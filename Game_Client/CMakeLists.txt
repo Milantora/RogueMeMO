@@ -1,5 +1,8 @@
-﻿project(GC)
+﻿project(GameClient)
+add_executable(GameClient GameClient.cpp)
 
-add_executable (GC "GC.cpp" "GC.h")
+target_sources(GameClient PRIVATE GameClient.ixx)
+set_source_files_properties(GameClient.ixx PROPERTIES LANGUAGE CXX)
 
-target_link_libraries(GC PRIVATE RE)
+target_link_libraries(GameClient PRIVATE RogueEngine)
+target_link_libraries(GameClient PRIVATE compiler_flags)

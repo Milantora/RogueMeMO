@@ -8,8 +8,28 @@ endif()
 
 project ("RogueMeMO")
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+# Enable experimental features for modules in GCC
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    target_compile_options(compiler_flags INTERFACE -fmodules-ts)
+endif()
+
+# Similar setup for Clang (version 16+ for better module support)
+if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    target_compile_options(compiler_flags INTERFACE -fmodules-ts)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+endif()
+
+# MSVC has native support for modules in C++20
+if (MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /experimental:module")
+endif()
+
+add_library(compiler_flags INTERFACE)
+target_compile_features(compiler_flags INTERFACE cxx_std_20)
+target_compile_options(compiler_flags INTERFACE "$<$<COMPILE_LANGUAGE:CXX>:-fmodules-ts>")
+
+# target_link_libraries(RogueMeMO PRIVATE compiler_flags)
 
 add_subdirectory ("Engine")
 add_subdirectory ("Game_Client")
